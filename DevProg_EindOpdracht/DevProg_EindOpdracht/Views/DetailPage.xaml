@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DevProg_EindOpdracht.Views.DetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key=" TitleLabelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+
+            </Style>
+            <Style x:Key=" DetailLabelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+
+            </Style>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Frame>
+            <StackLayout>
+                <Image x:Name="ImgAmiibo" ></Image>
+                <Grid WidthRequest="200">
+                    <Label Style="{StaticResource  TitleLabelStyle}" Text="Name: "/>
+                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblName"/>
+                </Grid>
+                <Grid WidthRequest="200">
+                    <Label Style="{StaticResource  TitleLabelStyle}" Text="GamerSeries: "/>
+                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblGameSeries"/>
+                </Grid>
+                <Grid  WidthRequest="200">
+                    <Label Style="{StaticResource  TitleLabelStyle}" Text="AmiiboSeries: "/>
+                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblAmiiboSeries"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
