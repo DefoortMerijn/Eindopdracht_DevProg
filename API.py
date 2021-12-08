@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from DataRepositories.DataRepository import DataRepository
+import json
 import sqlite3
 
 # Start app
@@ -24,15 +25,15 @@ def json_or_formdata(request):
 @app.route(endpoint + '/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return jsonify(DataRepository.read_all()), 200
+        return json.dumps(DataRepository.read_all()), 200
 
     if request.method == 'POST':
         print("posten")
         data = DataRepository.json_or_formdata(request)
         print(data.get('id'))
-        new_log = DataRepository.create_log(data.get('id'), data.get('name'))
-        print("log" + str(new_log))
-        return jsonify(readinglog=new_log), 201
+        DataRepository.create_log(data.get('id'), data.get('name'))
+
+        return jsonify(readinglog="Done"), 201
 
 
 # Start app
