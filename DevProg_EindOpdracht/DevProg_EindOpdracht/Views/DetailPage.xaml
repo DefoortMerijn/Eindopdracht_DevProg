@@ -1,38 +1,106 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DevProg_EindOpdracht.Views.DetailPage">
+             x:Class="DevProg_EindOpdracht.Views.DetailPage"
+                 >
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key=" TitleLabelStyle" TargetType="Label">
-                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="HeightRequest" Value="700"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="OutlineColor" Value="LightGray" />
+                <Setter Property="BackgroundColor" Value="white"/>
+            </Style>
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Margin" Value="16,0,0,0" />
+            </Style>
+            <Style x:Key="ImageStyle" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="HeightRequest" Value="200"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HasShadow" Value="True"/>
 
             </Style>
-            <Style x:Key=" DetailLabelStyle" TargetType="Label">
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-
+            <Style x:Key="DetailLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,0,16,0" />
+                <Setter Property="FontSize" Value="18"/>
             </Style>
-
-
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            <Style x:Key="RegionStyle" TargetType="StackLayout">
+                <Setter Property="Margin" Value="40,0,0,0"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <Frame>
-            <StackLayout>
-                <Image x:Name="ImgAmiibo" ></Image>
-                <Grid WidthRequest="200">
-                    <Label Style="{StaticResource  TitleLabelStyle}" Text="Name: "/>
-                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblName"/>
-                </Grid>
-                <Grid WidthRequest="200">
-                    <Label Style="{StaticResource  TitleLabelStyle}" Text="GamerSeries: "/>
-                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblGameSeries"/>
-                </Grid>
-                <Grid  WidthRequest="200">
-                    <Label Style="{StaticResource  TitleLabelStyle}" Text="AmiiboSeries: "/>
-                    <Label Style="{StaticResource   DetailLabelStyle}" x:Name="lblAmiiboSeries"/>
-                </Grid>
-            </StackLayout>
-        </Frame>
+    <ContentPage.Content >
+        <StackLayout BackgroundColor="LightGray">
+            <Frame Style="{StaticResource FrameStyle}">
+                <StackLayout>
+                    <Frame Style="{StaticResource ImageStyle}">
+                        <Image x:Name="ImgAmiibo"/>
+                    </Frame>
+                    <Label Text="Amiibo Info" Style="{StaticResource TitleStyle}"/>
+                    <Line X1="10" X2="400" Y1="0" Y2="0" Stroke="DarkOrange" StrokeThickness="4"/>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Id: "/>
+                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblId"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Name: "/>
+                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblName"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Game Series: "/>
+                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblGameSeries"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Amiibo Series: "/>
+                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblAmiiboSeries"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Type: "/>
+                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblType"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Spacing="0"  Margin="0,20,0,0">
+                        <Label Style="{StaticResource TitleLabelStyle}" Text="Release Date "/>
+                        <StackLayout >
+                            <StackLayout Style="{StaticResource RegionStyle}">
+                                <Label Style="{StaticResource TitleLabelStyle}" Text="AU: "/>
+                                <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblAU"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource RegionStyle}">
+                                <Label Style="{StaticResource TitleLabelStyle}" Text="EU: "/>
+                                <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblEU"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource RegionStyle}">
+                                <Label Style="{StaticResource TitleLabelStyle}" Text="JP: "/>
+                                <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblJP"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource RegionStyle}">
+                                <Label Style="{StaticResource TitleLabelStyle}" Text="NA: "/>
+                                <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblNA"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

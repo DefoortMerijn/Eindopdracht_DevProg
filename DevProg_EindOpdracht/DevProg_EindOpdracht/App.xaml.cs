@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevProg_EindOpdracht.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,8 @@ namespace DevProg_EindOpdracht
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainPage());
+            NavigationPage OwnedPage = new NavigationPage(new OwnedPage());
         }
 
         protected override void OnStart()

@@ -32,12 +32,41 @@ namespace DevProg_EindOpdracht.Repositories
 
                     //api callen en het resultaat bijhouden in een variabele
                     string json = await client.GetStringAsync(url);
-                    JObject obj = JObject.Parse(json);
-                    JToken res = obj["amiibo"];
-                    string jsonResults = res.ToString();
                     if (json != null)
                     {
-                        return JsonConvert.DeserializeObject<List<Amiibo>>(jsonResults);
+                        JObject obj = JObject.Parse(json);
+                        JToken res = obj["amiibo"];
+                        string jsonResults = res.ToString();
+                        List<Amiibo> list = JsonConvert.DeserializeObject<List<Amiibo>>(jsonResults);
+                        return list;
+                    }
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        public static async Task<List<Amiibo>> GetAmiibosBySerieAsync(string Serie)
+        {
+            using (HttpClient client = GetClient())
+            {
+
+                try
+                {
+                    //check url om boards op te vragen en plak key en token op einde van url
+                    string url = _BASEURL + "?type=figure&amiiboSeries=" + Serie;
+
+                    //api callen en het resultaat bijhouden in een variabele
+                    string json = await client.GetStringAsync(url);
+                    if (json != null)
+                    {
+                        JObject obj = JObject.Parse(json);
+                        JToken res = obj["amiibo"];
+                        string jsonResults = res.ToString();
+                        List<Amiibo> list = JsonConvert.DeserializeObject<List<Amiibo>>(jsonResults);
+                        return list;
                     }
                     return null;
                 }

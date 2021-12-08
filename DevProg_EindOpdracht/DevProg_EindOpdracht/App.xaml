@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DevProg_EindOpdracht.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="Primary">DarkOrange</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BarTextColor" Value="white" />
+                
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

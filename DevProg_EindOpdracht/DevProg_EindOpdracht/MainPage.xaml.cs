@@ -25,19 +25,10 @@ namespace DevProg_EindOpdracht
             List<Amiibo> amiibos = await AmiiboRepository.GetAmiibosAsync();
             List<string> amiiboseries = new List<string>();
 
-/*
-            foreach (var item in amiibos.Distinct()){
-                Debug.WriteLine(item.Name);
-            }*/
+            amiiboseries.Add("All");
 
             foreach (var item in amiibos) {
-/*                Debug.WriteLine(item.AmiiboSeries);*/
-
                 amiiboseries.Add(item.AmiiboSeries);
-/*              
-                var Amiiboserie = item.AmiiboSeries;
-                if(amiiboseries.Contains(Amiiboserie)){ }*/
-            
             }
             List<string> amiiboseriesdistinct = amiiboseries.Distinct().ToList();
 
@@ -46,10 +37,6 @@ namespace DevProg_EindOpdracht
             foreach (string item in amiiboseriesdistinct){
                 selectionAmiiboSeries.Items.Add(item);
                     }
-
-                
-
-
             
             collectionViewListHorizontal.ItemsSource = amiibos;
 
@@ -64,6 +51,38 @@ namespace DevProg_EindOpdracht
             
             }
         
+        }
+
+        private async void selectionAmiiboSeries_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+            
+            if (selectedIndex != -1)
+            {
+                if (picker.Items[selectedIndex] == "All") {
+                    List<Amiibo> amiibo = await AmiiboRepository.GetAmiibosAsync();
+                    collectionViewListHorizontal.ItemsSource = amiibo;
+
+                }
+                else
+                {
+                    List<Amiibo> amiiboserie = await AmiiboRepository.GetAmiibosBySerieAsync(picker.Items[selectedIndex]);
+                    collectionViewListHorizontal.ItemsSource = amiiboserie;
+                }
+                Debug.WriteLine(picker.Items[selectedIndex]);
+            }
+        }
+
+        private void TapGestureOverview_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new MainPage());
+        }
+
+        private void TapGestureOwned_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new OwnedPage());
+            Debug.WriteLine("OwnedPage");
         }
     }
 }
