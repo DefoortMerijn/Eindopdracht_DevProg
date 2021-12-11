@@ -1,5 +1,4 @@
 import sqlite3
-from .Database import Database
 
 
 class DataRepository:
@@ -20,15 +19,32 @@ class DataRepository:
 
     @staticmethod
     def read_all():
-        conn = sqlite3.connect('OwnedAmiibo.db', check_same_thread=False)
+        conn = sqlite3.connect('AmiiboReview.db', check_same_thread=False)
         conn.row_factory = DataRepository.row_to_dict
-        sql = 'SELECT * FROM amiibo'
+        sql = 'SELECT * FROM Review'
         result = conn.execute(sql)
         return result.fetchall()
 
     @staticmethod
-    def create_log(Id, Name):
-        with sqlite3.connect('OwnedAmiibo.db') as con:
+    def read_all_by_id(Id):
+        conn = sqlite3.connect('AmiiboReview.db', check_same_thread=False)
+        conn.row_factory = DataRepository.row_to_dict
+        sql = 'SELECT * FROM Review WHERE AmiiboId = ?'
+        result = conn.execute(sql, [Id])
+        return result.fetchall()
+
+    @staticmethod
+    def add_review(AmiiboId, Name, Review, Rating):
+        with sqlite3.connect('AmiiboReview.db') as con:
             c = con.cursor()
-            c.execute("INSERT INTO amiibo(id,name) VALUES(?,?)", (Id, Name))
+            c.execute("INSERT INTO Review(AmiiboId,Name , Review,Rating) VALUES(?,?,?,?)",
+                      (AmiiboId, Name, Review, Rating))
+            con.commit()
+
+    @staticmethod
+    def update_review(Name, Review, Rating, ReviewId, AmiiboId):
+        with sqlite3.connect('AmiiboReview.db') as con:
+            c = con.cursor()
+            c.execute("UPDATE Review SET Name = ?, Review = ?, Rating = ?) WHERE ReviewId = ? and AmiiboId = ?",
+                      (Name, Review, Rating, ReviewId, AmiiboId))
             con.commit()

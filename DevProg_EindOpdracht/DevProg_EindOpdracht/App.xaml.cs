@@ -11,7 +11,7 @@ namespace DevProg_EindOpdracht
         {
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
-            NavigationPage OwnedPage = new NavigationPage(new OwnedPage());
+            NavigationPage ReviewPage = new NavigationPage(new ReviewPage());
         }
 
         protected override void OnStart()

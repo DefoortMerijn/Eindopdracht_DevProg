@@ -23,6 +23,11 @@ namespace DevProg_EindOpdracht
         private async void TestRepo()
         {
             List<Amiibo> amiibos = await AmiiboRepository.GetAmiibosAsync();
+
+/*            foreach (var item in amiibos) {
+                Debug.WriteLine(item.Name);
+            }*/
+
             List<string> amiiboseries = new List<string>();
 
             amiiboseries.Add("All");
@@ -81,7 +86,7 @@ namespace DevProg_EindOpdracht
 
         private void TapGestureOwned_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OwnedPage());
+            Navigation.PushAsync(new ReviewPage());
             Debug.WriteLine("OwnedPage");
         }
     }

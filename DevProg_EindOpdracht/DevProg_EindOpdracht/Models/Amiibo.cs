@@ -7,8 +7,9 @@ namespace DevProg_EindOpdracht.Models
 {
     public class Amiibo
     {
-        [JsonProperty(propertyName: "tail")]
-        public string Id { get; set; }
+        public string Tail { get; set; }
+        public string Head { get; set; }
+        public string Id => $"{Head}{Tail}";
         public string Name { get; set; }
         public string GameSeries { get; set; }
         public string AmiiboSeries { get; set; }

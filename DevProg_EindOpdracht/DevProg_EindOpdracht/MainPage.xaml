@@ -74,7 +74,7 @@
                 <Setter Property="Spacing" Value="8" />
                 
             </Style>
-            <Style x:Key="PickerStyle" TargetType="StackLayout">
+            <Style x:Key="PickerStyle" TargetType="Frame">
                 <Setter Property="HeightRequest" Value="50"/>
                 <Setter Property="Padding" Value="10,0,10,0"/> 
                 

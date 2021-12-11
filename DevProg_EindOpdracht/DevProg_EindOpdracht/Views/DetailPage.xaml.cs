@@ -25,6 +25,7 @@ namespace DevProg_EindOpdracht.Views
         }
 
         private void ShowDetails() {
+            DetailTitle.Title = AmiiboContent.Name;
             lblType.Text = AmiiboContent.Type;
             lblId.Text = AmiiboContent.Id;
             if (AmiiboContent.Release["au"] != null)
