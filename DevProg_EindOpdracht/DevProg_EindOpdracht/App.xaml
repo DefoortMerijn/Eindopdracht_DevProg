@@ -8,8 +8,13 @@
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="white" />
-                
             </Style>
+
+            <x:String x:Key="IconPencil">&#xf044;</x:String>
+            <x:String x:Key="IconStar">&#xf005;</x:String>
+            <x:String x:Key="IconPlus">&#xf067;</x:String>
+            <x:String x:Key="IconRefresh">&#xf2f9;</x:String>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -132,7 +132,7 @@
                     </Label.GestureRecognizers>
                 </Label>
                 <Line X1="0" X2="0" Y1="0" Y2="50" Stroke="DarkOrange" StrokeThickness="5"/>
-                <Label  Text="Owned" Style="{StaticResource NavBarLabelStyle}">
+                <Label  Text="Reviews" Style="{StaticResource NavBarLabelStyle}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureOwned_Tapped"/>
                     </Label.GestureRecognizers>

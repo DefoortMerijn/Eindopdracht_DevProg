@@ -86,12 +86,33 @@
                     <Setter Property="FontSize" Value="24"/>
 
                 </Style>
-            </ResourceDictionary>
+            <Style x:Key="RatingIconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="FAS"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+
+
+            </Style>
+            <Style x:Key="IconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="white"/>
+                <Setter Property="FontFamily" Value="FAS"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Margin" Value="0,0,20,0"/>
+            </Style>
+        </ResourceDictionary>
         </ContentPage.Resources>
 
         <StackLayout >
-        <StackLayout HeightRequest="50" BackgroundColor="DarkOrange">
+        <StackLayout HeightRequest="50" BackgroundColor="DarkOrange" Orientation="Horizontal">
             <Label Text="Reviews" Padding="20,10,0,10" FontSize="24" FontAttributes="Bold" TextColor="white"/>
+            <Label Text="{StaticResource IconRefresh}" Style="{StaticResource IconStyle}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRefresh_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
         <Frame Style="{StaticResource PickerStyle}">
             <StackLayout WidthRequest="200">
@@ -111,10 +132,10 @@
                                     </Frame>
                                     <StackLayout Style="{StaticResource detailsStackLayout}" >
                                         <Label Style="{StaticResource NameLabel}" Text="{Binding Name}" />
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="Rating: " Style="{StaticResource LabelNameStyle}"/>
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <Label Text="{StaticResource IconStar}" Style="{StaticResource RatingIconStyle}"/>
                                             <Label Text="{Binding Rating}" Style="{StaticResource LabelStyle}"/>
-                                            <Label Text="/ 5" Style="{StaticResource LabelStyle}"/>
+                                            <Label Text="/5" Style="{StaticResource LabelStyle}"/>
                                         </StackLayout>
 
                                     </StackLayout>

@@ -115,12 +115,10 @@ namespace DevProg_EindOpdracht.Views
                             character.Id = item.Id;
                             character.Name = item.Name;
                             character.Image = item.Image;
-                            character.Rating = revie.Sum(rev => rev.Rating) / revie.Count;
+                            Double Rating = revie.Sum(rev => rev.Rating) / revie.Count;
+                            character.Rating = Math.Round(Rating, 1);
                             AmiiboReview.Add(character);
 
-
-                            revie.ForEach(rev => Debug.WriteLine($"{rev.Name}: {rev.Rating}"));
-                            Debug.WriteLine("Total rating: " + (revie.Sum(rev => rev.Rating) / revie.Count));
 
                         }
                         else
@@ -145,21 +143,23 @@ namespace DevProg_EindOpdracht.Views
         {
             Navigation.PushAsync(new MainPage());
 
-            Debug.WriteLine("OverwiewPage");
         }
 
         private void TapGestureOwned_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ReviewPage());
-
-            Debug.WriteLine("OwnedPage");
         }
 
         private void collectionViewAmiiboReview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CharacterReview review = collectionViewAmiiboReview.SelectedItem as CharacterReview;
-            Navigation.PushAsync(new AmiiboReviewsPage(review));
+            Navigation.PushAsync(new AmiiboReviewsPage(review.Id));
 
+        }
+
+        private void TapGestureRefresh_Tapped(object sender, EventArgs e)
+        {
+            showReviewSubjects();
         }
     }
 }

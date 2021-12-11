@@ -15,24 +15,43 @@ namespace DevProg_EindOpdracht.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AmiiboReviewsPage : ContentPage
     {
-        public CharacterReview ReviewContent { get; set; }
+        public String AmiiboId{ get; set; }
 
-        public AmiiboReviewsPage(CharacterReview review)
+        public AmiiboReviewsPage(String Id)
         {
             InitializeComponent();
-            this.ReviewContent = review;
+            this.AmiiboId = Id;
             ShowReviewsByID();
         }
 
         private async void ShowReviewsByID() {
-            List<Review> reviews = await AmiiboRepository.GetAmiiboReviewsByIdAsync(ReviewContent.Id);
+            List<Review> reviews = await AmiiboRepository.GetAmiiboReviewsByIdAsync(AmiiboId);
             collectionViewAmiiboReviews.ItemsSource = reviews;
-            Debug.WriteLine(ReviewContent.Id);
-/*            Review review = new Review() { AmiiboId = ReviewContent.Id, Name = "Merijn", ReviewText = "Middelmatig figuur", Rating = 2.5 };
-            await AmiiboRepository.AddReviewAsync(review);*/
+            Debug.WriteLine(AmiiboId);
 
 
 
+
+        }
+
+        private void TapGestureReview_Tapped(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Going to update this review");
+            Navigation.PushAsync(new UpdateReviewPage());
+
+        }
+
+        private void TapGestureAdd_Tapped(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Going to Add a review");
+            Navigation.PushAsync(new AddReviewPage(AmiiboId));
+
+
+        }
+
+        private void TapGestureRefresh_Tapped(object sender, EventArgs e)
+        {
+            ShowReviewsByID();
         }
     }
 }

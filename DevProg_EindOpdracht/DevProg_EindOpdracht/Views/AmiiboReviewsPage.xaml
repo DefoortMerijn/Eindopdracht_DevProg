@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DevProg_EindOpdracht.Views.AmiiboReviewsPage">
+             x:Class="DevProg_EindOpdracht.Views.AmiiboReviewsPage"
+             Title="{StaticResource IconPlus}" 
+>
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="NameLabel" TargetType="Label">
@@ -48,8 +50,37 @@
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="Spacing" Value="8" />
             </Style>
+            <Style x:Key="RatingIconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="DarkOrange"/>
+                <Setter Property="FontFamily" Value="FAS"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+            </Style>
+            <Style x:Key="IconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="white"/>
+                <Setter Property="FontFamily" Value="FAS"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Margin" Value="0,0,20,0"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{StaticResource IconRefresh}" Style="{StaticResource IconStyle}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRefresh_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="{StaticResource IconPlus}" Style="{StaticResource IconStyle}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureAdd_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <CollectionView x:Name="collectionViewAmiiboReviews">
             <CollectionView.ItemTemplate >
@@ -63,10 +94,15 @@
                                         <Frame BackgroundColor="White" BorderColor="DarkOrange" WidthRequest="100" Padding="10" Margin="0,10,0,10">
                                             <Label Text="{Binding ReviewText}" Margin="0" FontSize="16"/>
                                         </Frame>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="Rating: " Style="{StaticResource LabelNameStyle}"/>
+                                        <StackLayout Orientation="Horizontal" WidthRequest="100" Spacing="0">
+                                            <Label Text="{StaticResource IconStar} " Style="{StaticResource RatingIconStyle}"/>
                                             <Label Text="{Binding Rating}" Style="{StaticResource LabelStyle}"/>
-                                            <Label Text="/ 5" Style="{StaticResource LabelStyle}"/>
+                                            <Label Text="/5" Style="{StaticResource LabelStyle}"/>
+                                            <Label Text="{StaticResource IconPencil}" TextColor="SlateGray" FontSize="Large" FontFamily="FAS" HorizontalOptions="EndAndExpand">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureReview_Tapped"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
