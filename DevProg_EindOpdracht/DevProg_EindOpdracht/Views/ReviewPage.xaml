@@ -54,7 +54,7 @@
                 <Style x:Key="FrameCardViewStyle" TargetType="Frame">
                     <Setter Property="CornerRadius" Value="5" />
                     <Setter Property="Margin" Value="5" />
-                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="Padding" Value="5,10,5,10" />
                     <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                     <Setter Property="OutlineColor" Value="LightGray" />
                     <Setter Property="BorderColor" Value="LightGray" />
@@ -147,7 +147,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Frame HeightRequest="20" WidthRequest="100" BackgroundColor="SteelBlue" Margin="-5" HasShadow="True" BorderColor="DarkOrange" >
+        <Frame HeightRequest="20" WidthRequest="100" BackgroundColor="GhostWhite" Margin="-5" HasShadow="True" BorderColor="DarkOrange" >
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-12,0,-10" Spacing="50" HeightRequest="50" BackgroundColor="Transparent">
                     <Label  Text="Overview" Style="{StaticResource NavBarLabelStyle}" VerticalTextAlignment="Start" HeightRequest="100">
                         <Label.GestureRecognizers>

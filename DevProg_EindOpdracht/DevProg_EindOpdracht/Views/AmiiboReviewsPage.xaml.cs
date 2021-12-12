@@ -36,8 +36,12 @@ namespace DevProg_EindOpdracht.Views
 
         private void TapGestureReview_Tapped(object sender, EventArgs e)
         {
-            Debug.WriteLine("Going to update this review");
-            Navigation.PushAsync(new UpdateReviewPage());
+            var icon = (Label) sender;
+            var review = (Review)icon.BindingContext;
+
+            Debug.WriteLine(review.ReviewId);
+            Debug.WriteLine(review.ReviewText);
+            Navigation.PushAsync(new UpdateReviewPage(review));
 
         }
 

@@ -63,10 +63,6 @@
                     <Label Text="Amiibo Info" Style="{StaticResource TitleStyle}"/>
                     <Line X1="0" X2="400" Y1="0" Y2="0" Stroke="DarkOrange" StrokeThickness="4"/>
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource TitleLabelStyle}" Text="Id: "/>
-                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblId"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="0">
                         <Label Style="{StaticResource TitleLabelStyle}" Text="Name: "/>
                         <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblName"/>
                     </StackLayout>
@@ -78,10 +74,7 @@
                         <Label Style="{StaticResource TitleLabelStyle}" Text="Amiibo Series: "/>
                         <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblAmiiboSeries"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource TitleLabelStyle}" Text="Type: "/>
-                        <Label Style="{StaticResource DetailLabelStyle}" x:Name="lblType"/>
-                    </StackLayout>
+
                     <StackLayout Orientation="Vertical" Spacing="0"  Margin="0,20,0,0">
                         <Label Style="{StaticResource TitleLabelStyle}" Text="Release Date "/>
                         <StackLayout >

@@ -82,7 +82,7 @@
             <Style x:Key="NavBarLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="DarkOrange"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontSize" Value="24"/>
 
             </Style>
         </ResourceDictionary>
@@ -124,8 +124,8 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Frame HeightRequest="20" WidthRequest="100" BackgroundColor="White" HasShadow="True" BorderColor="DarkOrange" >
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="-5" Spacing="60" HeightRequest="50" BackgroundColor="Transparent">
+        <Frame HeightRequest="20" WidthRequest="100" BackgroundColor="GhostWhite" Margin="-5" HasShadow="True" BorderColor="DarkOrange" >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-12,0,-10" Spacing="50" HeightRequest="50" BackgroundColor="Transparent">
                 <Label  Text="Overview" Style="{StaticResource NavBarLabelStyle}" VerticalTextAlignment="Start" HeightRequest="100">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureOverview_Tapped"/>
