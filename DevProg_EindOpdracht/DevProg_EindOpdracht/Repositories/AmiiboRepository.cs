@@ -135,6 +135,34 @@ namespace DevProg_EindOpdracht.Repositories
                 }
             }
         }
+        public static async Task<List<Amiibo>> GetAmiibosUsageAsync(string Tail)
+        {
+            using (HttpClient client = GetClient())
+            {
+
+                try
+                {
+                    //check url om boards op te vragen en plak key en token op einde van url
+                    string url = _BASEURLAMIIBO + "?type=figure&showusage&tail=" + Tail;
+
+                    //api callen en het resultaat bijhouden in een variabele
+                    string json = await client.GetStringAsync(url);
+                    if (json != null)
+                    {
+                        JObject obj = JObject.Parse(json);
+                        JToken res = obj["amiibo"];
+                        string jsonResults = res.ToString();
+                        List<Amiibo> list = JsonConvert.DeserializeObject<List<Amiibo>>(jsonResults);
+                        return list;
+                    }
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
         public static async Task<List<Review>> GetAmiiboReviewsAsync()
         {
             using (HttpClient client = GetClient())
@@ -199,10 +227,39 @@ namespace DevProg_EindOpdracht.Repositories
             {//deze methode voegt een nieuwe trellocard toe aan de list(listId als parameter)
                 using (HttpClient client = GetClient())
                 {
-                    String url = _BASEURLREVIEW;
+                    String url = _BASEURLREVIEW ;
                     String json = JsonConvert.SerializeObject(newReview);
                     HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync(url, content);
+                    if (response.IsSuccessStatusCode == false)
+                    {
+                        throw new Exception("It no work");
+
+                    }
+                    else
+                    {
+                        Debug.WriteLine("review created");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+        public static async Task UpdatReviewAsync(Review UpdatedReview)
+        {
+
+            try
+            {
+                using (HttpClient client = GetClient())
+                {
+                    String url = _BASEURLREVIEW + UpdatedReview.ReviewId ;
+                    String json = JsonConvert.SerializeObject(UpdatedReview);
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PutAsync(url, content);
                     if (response.IsSuccessStatusCode == false)
                     {
                         throw new Exception("It no work");

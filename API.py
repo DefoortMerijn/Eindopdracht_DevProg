@@ -31,12 +31,24 @@ def index():
         return jsonify(readinglog="Done"), 201
 
 
-@app.route(endpoint + '/<id>', methods=['GET'])
-def GetReviewsByName(id):
+@app.route(endpoint + '/<AmiiboId>', methods=['GET'])
+def GetReviewsByName(AmiiboId):
     if request.method == 'GET':
-        AmiiboId = str(id)
+
         print(AmiiboId)
         return jsonify(DataRepository.read_all_by_id(AmiiboId)), 200
+
+
+@app.route(endpoint + '/<ReviewId>', methods=['PUT'])
+def UpdateReview(ReviewId):
+
+    if request.method == 'PUT':
+        print("posten")
+        data = request.get_json(force=True)
+        DataRepository.update_review(data.get(
+            'Name'), data.get('Review'), data.get('Rating'), ReviewId)
+
+        return jsonify(readinglog="Done"), 204
 
 
 # Start app

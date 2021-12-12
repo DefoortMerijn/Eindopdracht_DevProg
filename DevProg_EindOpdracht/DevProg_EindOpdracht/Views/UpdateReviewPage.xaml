@@ -2,11 +2,65 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DevProg_EindOpdracht.Views.UpdateReviewPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Margin" Value="20,50,20,50"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="OutlineColor" Value="LightGray" />
+                <Setter Property="BackgroundColor" Value="white"/>
+            </Style>
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style x:Key="DetailLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,0,16,0" />
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            <Style x:Key="InputStyle" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style x:Key="TextInputStyle" TargetType="Editor">
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="HeightRequest" Value="200"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="LightGray">
+            <Frame Style="{StaticResource FrameStyle}">
+                <StackLayout HorizontalOptions="CenterAndExpand" WidthRequest="300" Spacing="20" >
+                    <Label Text="Edit review" Style="{StaticResource TitleStyle}"/>
+                    <StackLayout>
+                        <Label Text="Name" Style="{StaticResource TitleLabelStyle}"/>
+                        <Entry x:Name="InputName" Placeholder="Vb. Merijn" Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Review" Style="{StaticResource TitleLabelStyle}"/>
+                        <Editor x:Name="InputReview" Placeholder="Vb. Good Figure" Style="{StaticResource TextInputStyle}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Rating:" Style="{StaticResource TitleLabelStyle}"/>
+                        <Entry x:Name="InputRating" Placeholder="Max. 5" Style="{StaticResource InputStyle}"/>
+                    </StackLayout>
+                    <Button Text="Edit" BackgroundColor="DarkOrange" TextColor="white" CornerRadius="5" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

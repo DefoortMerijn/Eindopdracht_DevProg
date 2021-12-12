@@ -29,8 +29,8 @@ class DataRepository:
     def read_all_by_id(Id):
         conn = sqlite3.connect('AmiiboReview.db', check_same_thread=False)
         conn.row_factory = DataRepository.row_to_dict
-        sql = 'SELECT * FROM Review WHERE AmiiboId = ?'
-        result = conn.execute(sql, [Id])
+        sql = f"SELECT * FROM Review WHERE AmiiboId LIKE '{Id}'"
+        result = conn.execute(sql)
         return result.fetchall()
 
     @staticmethod
@@ -42,9 +42,9 @@ class DataRepository:
             con.commit()
 
     @staticmethod
-    def update_review(Name, Review, Rating, ReviewId, AmiiboId):
+    def update_review(Name, Review, Rating, ReviewId):
         with sqlite3.connect('AmiiboReview.db') as con:
             c = con.cursor()
-            c.execute("UPDATE Review SET Name = ?, Review = ?, Rating = ?) WHERE ReviewId = ? and AmiiboId = ?",
-                      (Name, Review, Rating, ReviewId, AmiiboId))
+            c.execute("UPDATE Review SET Name = ?, Review = ?, Rating = ? WHERE ReviewId = ?",
+                      (Name, Review, Rating, ReviewId))
             con.commit()
